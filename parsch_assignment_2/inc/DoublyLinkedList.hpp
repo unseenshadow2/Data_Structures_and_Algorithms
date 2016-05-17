@@ -10,6 +10,7 @@
 #ifndef LINKED_LIST_HEADER
 #define LINKED_LIST_HEADER
 
+// DoublyNode
 // The nodes for a DoublyLinkedList
 template <typename T>
 struct DoublyNode
@@ -19,7 +20,9 @@ struct DoublyNode
   DoublyNode* previous;
 };
 
-// A DoublyLinkedList
+// DoublyLinkedList
+// A linked list that is capable of being moved along in both a forward
+// and backward direction
 template <class T>
 class DoublyLinkedList
 {
@@ -30,19 +33,80 @@ protected:
   int _length; // The length of our DoublyLinkedList
 
 public:
+  // Default constructor
   DoublyLinkedList();
+
+  // Constructor
+  // Create a DoublyLinkedList with a initial key with the value given
   DoublyLinkedList(T firstValue);
-  T* Find(T dataToFind);
-  bool Insert(T newData);
+
+  // Find
+  // Find the DoublyNode where the key == dataToFind
+  // This will rely upon the == operator
+  DoublyNode<T>* Find(T dataToFind);
+
+  // Insert
+  // Inserts the new key value into a DoublyNode
+  // at the position given, starting from 0. If a
+  // negative value is passed, the value is placed
+  // at the end of the DoublyLinkedList.
+  // Returns whether the operation was successful.
+  bool Insert(T newData, int position = -1);
+
+  // Delete
+  // Removes the DoublyNode at the given pointer.
+  // Returns wether the operation was successful.
   bool Delete(DoublyNode* toDelete);
-  bool MoveForward(int numToMove);
-  bool MoveBackward(int numToMove);
+
+  // MoveForward
+  // Move along the DoublyLinkedList in a forward
+  // direction a number of positions given. Returns
+  // the new current node.
+  DoublyNode* MoveForward(int numToMove = 1);
+
+  // MoveBackward
+  // Move along the DoublyLinkedList in a backward
+  // direction a number of positions given. Returns
+  // the new current node.
+  DoublyNode* MoveBackward(int numToMove = 1);
+
+  // Length
+  // Returns the number of nodes in the list
   int Length();
-  DoublyNode* Minimum();
-  DoublyNode* Maximum();
+
+  // Minimum
+  // Returns the minimum key value. Uses the < operator.
+  T Minimum();
+
+  // Maximum
+  // Returns the maximum key value. Uses the < operator.
+  T Maximum();
+
+  // GetCurrent
+  // Returns a pointer to the current DoublyNode.
   DoublyNode* GetCurrent();
-  
-  // Add opperator overrides for ++, --, [], and ==.
+
+  // operator++
+  // Moves the current position in the DoublyLinkedList
+  // in the forward direction by 1. Returns the new
+  // current pointer.
+  DoublyNode<T>* operator++(); // This one as well
+
+  // operator--
+  // Moves the current position in the DoublyLinkedList
+  // in the backward direction by 1. Returns the new
+  // current pointer.
+  DoublyNode<T>* operator--();
+
+  // operator()
+  // Returns the key value at the current pointer's position.
+  T operator()(); // Look this one up
+
+  // operator==
+  // Returns whether the key values of the current pointers
+  // are equivilent to each other. Uses the == on the key
+  // values.
+  bool operator==(const DoublyLinkedList<T> dll1, const DoublyLinkedList<T> dll2);
 };
 
 #endif // LINKED_LIST_HEADER
