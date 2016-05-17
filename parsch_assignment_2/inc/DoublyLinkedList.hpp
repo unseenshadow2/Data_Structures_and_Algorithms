@@ -91,12 +91,20 @@ public:
   // in the forward direction by 1. Returns the new
   // current pointer.
   DoublyNode<T>* operator++(); // This one as well
+  DoublyNode<T>* operator++(int);
 
   // operator--
   // Moves the current position in the DoublyLinkedList
   // in the backward direction by 1. Returns the new
   // current pointer.
   DoublyNode<T>* operator--();
+  DoublyNode<T>* operator--(int);
+
+  // operator[]
+  // Provides the key value at the position given.
+  // Starts from the head and may be a slow operation.
+  T& operator[](unsigned int index);
+  const T& operator[](unsigned int index) const;
 
   // operator()
   // Returns the key value at the current pointer's position.
