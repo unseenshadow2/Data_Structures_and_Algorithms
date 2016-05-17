@@ -41,6 +41,8 @@ public:
   DoublyNode* Minimum();
   DoublyNode* Maximum();
   DoublyNode* GetCurrent();
+  
+  // Add opperator overrides for ++, --, [], and ==.
 };
 
 #endif // LINKED_LIST_HEADER
