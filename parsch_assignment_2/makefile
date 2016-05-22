@@ -12,7 +12,7 @@ LDFLAGS  :=
 LDLIBS   :=
 RUNCMD	 :=
 
-NAME := linked_list
+NAME := linked_list.out
 
 .PHONY: debug release clean run
 

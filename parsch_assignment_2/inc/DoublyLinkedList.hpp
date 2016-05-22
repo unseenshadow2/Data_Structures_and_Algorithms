@@ -7,17 +7,17 @@
  *          creating a linked list implentation from scratch.
  */
 
-#ifndef LINKED_LIST_HEADER
-#define LINKED_LIST_HEADER
+#ifndef PARSCH_LINKED_LIST_HEADER
+#define PARSCH_LINKED_LIST_HEADER
 
 // DoublyNode
 // The nodes for a DoublyLinkedList
 template <typename T>
 struct DoublyNode
 {
-  T* key;
-  DoublyNode* next;
-  DoublyNode* previous;
+	T key;
+	DoublyNode* next;
+	DoublyNode* previous;
 };
 
 // DoublyLinkedList
@@ -27,94 +27,100 @@ template <class T>
 class DoublyLinkedList
 {
 protected:
-  DoublyNode<T>* head; // The pointer to the beginning of the list
-  DoublyNode<T>* tail; // The pointer to the end of the list
-  DoublyNode<T>* current; // A "current" value to make the life of the user easier
-  int _length; // The length of our DoublyLinkedList
+	DoublyNode<T>* first; // The pointer to the beginning of the list
+	DoublyNode<T>* last; // The pointer to the end of the list
+	DoublyNode<T>* current; // A "current" value to make the life of the user easier
+	int _length; // The length of our DoublyLinkedList
 
 public:
-  // Default constructor
-  DoublyLinkedList();
+	// Default constructor
+	DoublyLinkedList();
 
-  // Constructor
-  // Create a DoublyLinkedList with a initial key with the value given
-  DoublyLinkedList(T firstValue);
+	// Constructor
+	// Create a DoublyLinkedList with a initial key with the value given
+	DoublyLinkedList(T firstValue);
 
-  // Find
-  // Find the DoublyNode where the key == dataToFind
-  // This will rely upon the == operator
-  DoublyNode<T>* Find(T dataToFind);
+	// Deconstructor
+	~DoublyLinkedList();
 
-  // Insert
-  // Inserts the new key value into a DoublyNode
-  // at the position given, starting from 0. If a
-  // negative value is passed, the value is placed
-  // at the end of the DoublyLinkedList.
-  // Returns whether the operation was successful.
-  bool Insert(T newData, int position = -1);
+	// Find
+	// Find the DoublyNode where the key == dataToFind
+	// This will rely upon the == operator
+	DoublyNode<T>* Find(T dataToFind);
 
-  // Delete
-  // Removes the DoublyNode at the given pointer.
-  // Returns wether the operation was successful.
-  bool Delete(DoublyNode* toDelete);
+	// Insert
+	// Inserts the new key value into a DoublyNode
+	// at the position given, starting from 0. If a
+	// negative value is passed, the value is placed
+	// at the end of the DoublyLinkedList. Uses the
+	// = operator.
+	// Returns whether the operation was successful.
+	bool Insert(T newData, int position = -1);
 
-  // MoveForward
-  // Move along the DoublyLinkedList in a forward
-  // direction a number of positions given. Returns
-  // the new current node.
-  DoublyNode* MoveForward(int numToMove = 1);
+	// Delete
+	// Removes the DoublyNode at the given pointer.
+	// Returns wether the operation was successful.
+	bool Delete(DoublyNode<T>* toDelete);
 
-  // MoveBackward
-  // Move along the DoublyLinkedList in a backward
-  // direction a number of positions given. Returns
-  // the new current node.
-  DoublyNode* MoveBackward(int numToMove = 1);
+	// MoveForward
+	// Move along the DoublyLinkedList in a forward
+	// direction a number of positions given. Returns
+	// the new current node.
+	DoublyNode<T>* MoveForward(int numToMove = 1);
 
-  // Length
-  // Returns the number of nodes in the list
-  int Length();
+	// MoveBackward
+	// Move along the DoublyLinkedList in a backward
+	// direction a number of positions given. Returns
+	// the new current node.
+	DoublyNode<T>* MoveBackward(int numToMove = 1);
 
-  // Minimum
-  // Returns the minimum key value. Uses the < operator.
-  T Minimum();
+	// Length
+	// Returns the number of nodes in the list
+	int Length();
 
-  // Maximum
-  // Returns the maximum key value. Uses the < operator.
-  T Maximum();
+	// Minimum
+	// Returns the minimum key value. Uses the < operator.
+	T Minimum();
 
-  // GetCurrent
-  // Returns a pointer to the current DoublyNode.
-  DoublyNode* GetCurrent();
+	// Maximum
+	// Returns the maximum key value. Uses the < operator.
+	T Maximum();
 
-  // operator++
-  // Moves the current position in the DoublyLinkedList
-  // in the forward direction by 1. Returns the new
-  // current pointer.
-  DoublyNode<T>* operator++(); // This one as well
-  DoublyNode<T>* operator++(int);
+	// GetCurrent
+	// Returns a pointer to the current DoublyNode.
+	DoublyNode<T>* GetCurrent();
 
-  // operator--
-  // Moves the current position in the DoublyLinkedList
-  // in the backward direction by 1. Returns the new
-  // current pointer.
-  DoublyNode<T>* operator--();
-  DoublyNode<T>* operator--(int);
+	// operator++
+	// Moves the current position in the DoublyLinkedList
+	// in the forward direction (towards last) by 1.
+	// Returns the new current pointer.
+	DoublyNode<T>* operator++(); // Prefix
+	DoublyNode<T>* operator++(int); // Postfix
 
-  // operator[]
-  // Provides the key value at the position given.
-  // Starts from the head and may be a slow operation.
-  T& operator[](unsigned int index);
-  const T& operator[](unsigned int index) const;
+	// operator--
+	// Moves the current position in the DoublyLinkedList
+	// in the backward direction (towards first) by 1.
+	// Returns the new current pointer.
+	DoublyNode<T>* operator--();
+	DoublyNode<T>* operator--(int);
 
-  // operator()
-  // Returns the key value at the current pointer's position.
-  T operator()(); // Look this one up
+	// operator[]
+	// Provides the key value at the position given.
+	// Starts from the head and may be a slow operation.
+	T& operator[](unsigned int index);
+	const T operator[](unsigned int index) const;
 
-  // operator==
-  // Returns whether the key values of the current pointers
-  // are equivilent to each other. Uses the == on the key
-  // values.
-  bool operator==(const DoublyLinkedList<T> dll1, const DoublyLinkedList<T> dll2);
+	// operator()
+	// Returns the key value at the current pointer's position.
+	T& operator()(); // Look this one up
+
+	// operator==
+	// Returns whether the key values of the current pointers
+	// are equivilent to each other. Uses the == on the key
+	// values.
+	bool operator==(const DoublyLinkedList<T> other);
 };
 
-#endif // LINKED_LIST_HEADER
+#include "DoublyLinkedList.tpp"
+
+#endif // PARSCH_LINKED_LIST_HEADER
