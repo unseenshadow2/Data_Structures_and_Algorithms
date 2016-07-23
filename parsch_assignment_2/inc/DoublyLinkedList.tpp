@@ -138,7 +138,7 @@ template <class T>
 bool DoublyLinkedList<T>::Delete(DoublyNode<T>* toDelete)
 {
 	// Check that we have values to delete
-	if ( !(first && last) ) return false;
+	if (!(first && last)) return false;
 	else if (!toDelete) return false;
 
 	// If we have the same first and last, there is only one value
