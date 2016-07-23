@@ -1,0 +1,5 @@
+**/*.out
+**/*.o
+**/*.zip
+**/*.*~
+**/[Ll]ab_[Rr]eport.docx

@@ -1,0 +1,86 @@
+// Insert
+// Inserts the new key value into a DoublyNode
+// at the position given, starting from 0. If a
+// negative value is passed, the value is placed
+// at the end of the DoublyLinkedList. Uses the
+// = operator.
+// Returns whether the operation was successful.
+template <class T>
+bool DoublyLinkedList<T>::Insert(T newData, int position)
+{
+	// Ensure that we are not beyond our length
+	if (position >= _length) return false; // 1
+
+	// Create the new node
+	DoublyNode<T>* tmp = new DoublyNode<T>(); // 1
+	tmp->next = NULL; // 1
+	tmp->previous = NULL; // 1
+	tmp->key = newData; // 1
+
+	// Add the new node to the linked list
+	if ((first == NULL) && (last == NULL)) // 1
+	{
+		// We are now the current, first, and last...
+		current = tmp; // 1
+		first = tmp; // 1
+		last = tmp; // 1
+	}
+	else if (position < 0) // 1
+	{
+		// We are now the last
+		tmp->previous = last; // 1
+		last->next = tmp; // 1
+		last = tmp; // 1
+	}
+	else if (position == 0) // 1
+	{
+		// We are now the first
+		tmp->next = first; // 1
+		first->previous = tmp; // 1
+		first = tmp; // 1
+	}
+	else
+	{
+		DoublyNode<T>* toTake; // 1
+
+		// Make sure that we start from the right end
+		if (position < (_length / 2)) // 1
+		{
+			toTake = first; // 1
+
+			// Find our toTake
+			for (int i = 0; i < position; i++)
+			{
+				toTake = toTake->next; // N/2
+			}
+		}
+		else
+		{
+			toTake = last; // 1
+
+			// Find our toTake
+			for (int i = (_length - 1); i > position; i--) // 1
+			{
+				toTake = toTake->previous; // N/2
+			}
+		}
+
+		// Set up our past
+		tmp->previous = toTake->previous; // 1
+		toTake->previous = tmp; // 1
+
+		// Set up out next
+		tmp->next = toTake; // 1
+	}
+
+	++_length; // 1
+
+	return true; // 1
+}
+
+// The big O notation of this function is O(N).
+// I don't believe that the worst-case complexity of this function can be decreased without adding
+// an increase in complexity of the section where the loops are N/2. What improvements I can see
+// around those only reduce the worst-case complexity of the functions to something to the sort of
+// N/R, where R is the number of multiples that N is split over, such as splitting the dataset into
+// fourths would only decrease the worst-case down to N/4, which still becomes O(N).
