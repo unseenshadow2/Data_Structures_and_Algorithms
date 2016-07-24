@@ -26,8 +26,6 @@ private:
 	int max_size;
 	static const int defMaxStackSize = MAX_SIZE;
 
-	//Stack ();
-
 protected:
 
 public:
@@ -45,10 +43,6 @@ public:
 	// returns it.
 	// Throws when stack is empty.
 	DT pop () throw ( logic_error );
-
-	// View the top, but don't remove.
-	// Throws when stack is empty.
-	DT peek () throw ( logic_error );
 
 	// Removes all the data items in a stack.
 	void clear ();

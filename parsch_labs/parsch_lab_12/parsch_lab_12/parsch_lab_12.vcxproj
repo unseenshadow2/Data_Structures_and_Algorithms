@@ -151,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExprTree.hpp" />
+    <ClInclude Include="Stack.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Stack.tpp">
+      <FileType>CppHeader</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

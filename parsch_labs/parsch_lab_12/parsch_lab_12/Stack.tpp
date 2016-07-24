@@ -7,9 +7,6 @@
 
 using namespace std;
 
-//template<class DT>
-//Stack<DT>::Stack () {}
-
 // Constructor. Creates an empty stack.
 template<class DT>
 Stack<DT>::Stack ( int maxNumber ) throw ( bad_alloc ) : max_size (maxNumber), size (0)
@@ -59,15 +56,6 @@ DT Stack<DT>::pop () throw ( logic_error )
 	size--;
 
 	return toReturn;
-}
-
-// View the top, but don't remove.
-// Throws when stack is empty.
-template<class DT>
-DT Stack<DT>::peek () throw ( logic_error )
-{
-	if (isEmpty()) { throw logic_error("Stack is empty..."); }
-	return top->value;
 }
 
 // Removes all the data items in a stack.

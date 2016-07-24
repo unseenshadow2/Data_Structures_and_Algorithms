@@ -26,5 +26,13 @@
     <ClInclude Include="ExprTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Stack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Stack.tpp">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
